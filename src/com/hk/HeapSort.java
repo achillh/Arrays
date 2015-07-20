@@ -16,21 +16,27 @@ public class HeapSort {
 	private static void HeapAdjust(int H[], int s,int length)
 	{
 		int temp = H[s];
-		int child = 2*s+1;   //
+		int child = 2*s+1;   /*左孩子节点，每次都是奇数    0
+																					   1         2
+																					3   4     5   6
+																					
+																		排序：	 左节点  <根节点<  右节点  		
+										   */
+																						
 		while(child<length)
 		{
-			if(child+1<length && H[child]<H[child+1])
+			if(child+1<length && H[child]<H[child+1])  //左节点 <  右节点 
 			{
-				++child;
+				++child;        //得到较大的那个节点
 			}
-			if(H[child]>H[s])  
+			if(H[child]>H[s])       // 较大的节点 与 根节点做比较
 			{
-				H[s] = H[child];			// 那么把较大的子结点往上移动，替换它的父结点 			
-				s = child;
-				child = 2*s +1;       //
-			}else								// 如果当前待调整结点大于它的左右孩子，则不需要调整，直接退出
+				H[s] = H[child];				
+				s = child;							//下一个节点	开始	
+				child = 2*s +1;       
+			}else								
 				break;
-			H[s] = temp;		// 当前待调整的结点放到比其大的孩子结点位置上  
+			H[s] = temp;		 
 		}
 	}
 	//Building heap
